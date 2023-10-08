@@ -1,14 +1,28 @@
-service: shop-api
-frameworkVersion: '3'
+service: api
+
+app: shop-api
+frameworkVersion: "3"
 
 provider:
   name: aws
   runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: ap-south-1
+  profile: epam_bipin
 
 functions:
-  api:
-    handler: index.handler
+  productList:
+    handler: src/handlers/productList.handler
     events:
       - httpApi:
-          path: /
+          path: /products
           method: get
+  productById:
+    handler: src/handlers/productById.handler
+    events:
+      - httpApi:
+          path: /products/{id}
+          method: get
+
+plugins:
+  - serverless-offline
