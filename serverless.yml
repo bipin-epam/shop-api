@@ -1,4 +1,4 @@
-service: api
+service: shop-api
 
 app: shop-api
 frameworkVersion: "3"
@@ -9,6 +9,8 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: ap-south-1
   profile: epam_bipin
+  httpApi:
+    cors: true
 
 functions:
   productList:
