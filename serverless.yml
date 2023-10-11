@@ -11,7 +11,7 @@ custom:
     swaggerPath: "swagger"
     useStage: true
   webpack:
-    excludeFiles: "**/*.test.js"
+    excludeFiles: ["**/*.test.js", "**/*d.ts", "**/*.py"]
     webpackConfig: "webpack.config.js"
     includeModules: false
     packager: "npm"
