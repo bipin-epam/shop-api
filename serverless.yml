@@ -1,7 +1,14 @@
-service: shop-api
+service: api
 
 app: shop-api
 frameworkVersion: "3"
+
+custom:
+  webpack:
+    excludeFiles: "**/*.test.js"
+    webpackConfig: "webpack.config.js"
+    includeModules: false
+    packager: "npm"
 
 provider:
   name: aws
@@ -9,41 +16,25 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: ap-south-1
   profile: epam_bipin
-  httpApi:
-    cors: true
-custom:
-  autoswagger:
-    title: Shop API
-    apiType: httpApi
-    generateSwaggerOnDeploy: true
-    swaggerPath: "swagger"
-    useStage: true
+
+package:
+  individually: true
+  excludeDevDependencies: false
+
 functions:
   productList:
-    handler: src/handlers/productList.handler
+    handler: src/handlers/productList/index.js
     events:
       - httpApi:
           path: /products
           method: get
-          responseData:
-            200:
-              description: "Products fetched successfully!"
-              bodyType: "ProductsList"
-
   productById:
-    handler: src/handlers/productById.handler
+    handler: src/handlers/productById/index.js
     events:
       - httpApi:
           path: /products/{id}
           method: get
-          responseData:
-            200:
-              description: "Product found!"
-              bodyType: "ProductById"
-            404:
-              description: "No such product found!"
-              bodyType: "NotFound"
 
 plugins:
-  - serverless-auto-swagger
+  - serverless-webpack
   - serverless-offline
