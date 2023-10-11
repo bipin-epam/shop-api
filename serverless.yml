@@ -1,14 +1,58 @@
-service: shop-api
-frameworkVersion: '3'
+service: api
+
+app: shop-api
+frameworkVersion: "3"
+
+custom:
+  autoswagger:
+    title: Shop API
+    apiType: httpApi
+    generateSwaggerOnDeploy: true
+    swaggerPath: "swagger"
+    useStage: true
+  webpack:
+    excludeFiles: ["**/*.test.js", "**/*d.ts", "**/*.py"]
+    webpackConfig: "webpack.config.js"
+    includeModules: false
+    packager: "npm"
 
 provider:
   name: aws
   runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: ap-south-1
+  profile: epam_bipin
+
+package:
+  individually: true
+  excludeDevDependencies: false
 
 functions:
-  api:
-    handler: index.handler
+  productList:
+    handler: src/handlers/productList/index.js
     events:
       - httpApi:
-          path: /
+          path: /products
           method: get
+          responseData:
+            200:
+              description: "Products fetched successfully!"
+              bodyType: "ProductsList"
+  productById:
+    handler: src/handlers/productById/index.js
+    events:
+      - httpApi:
+          path: /products/{id}
+          method: get
+          responseData:
+            200:
+              description: "Product found!"
+              bodyType: "ProductById"
+            404:
+              description: "No such product found!"
+              bodyType: "NotFound"
+
+plugins:
+  - serverless-auto-swagger
+  - serverless-offline
+  - serverless-webpack
