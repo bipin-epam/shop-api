@@ -1,4 +1,4 @@
-const { handler } = require("./index");
+const { handler } = require(".");
 
 describe("Product List", () => {
   it("returns status 200 when called", async () => {
