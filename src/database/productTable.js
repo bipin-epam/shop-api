@@ -7,7 +7,7 @@ const {
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 
 const { REGION } = require("../constants/config");
-const PRODUCTS_TABLE = process.env.PRODUCTS_TABLE;
+const PRODUCTS_TABLE = process.env.PRODUCTS_TABLE ?? "products";
 
 const client = DynamoDBDocumentClient.from(
   new DynamoDBClient({ region: REGION })
