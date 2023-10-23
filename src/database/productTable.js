@@ -2,11 +2,13 @@ const {
   DynamoDBDocumentClient,
   ScanCommand,
   QueryCommand,
+  PutCommand,
 } = require("@aws-sdk/lib-dynamodb");
 
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 
 const { REGION } = require("../constants/config");
+const { v4 } = require("uuid");
 const PRODUCTS_TABLE = process.env.PRODUCTS_TABLE ?? "products";
 
 const client = DynamoDBDocumentClient.from(
@@ -34,6 +36,24 @@ const getProduct = async (id) => {
   );
   return products[0];
 };
+
+const createProduct = async ({ title, description, price }) => {
+  const id = v4();
+  const item = {
+    id,
+    title,
+    description,
+    price,
+  };
+  const result = await client.send(
+    new PutCommand({
+      TableName: PRODUCTS_TABLE,
+      Item: item,
+    })
+  );
+
+  return item;
+};
 //#endregion
 
-module.exports = { getAllProducts, getProduct };
+module.exports = { getAllProducts, getProduct, createProduct };

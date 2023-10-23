@@ -31,6 +31,15 @@ package:
   excludeDevDependencies: false
 
 functions:
+  createProduct:
+    handler: src/handlers/create/index.handler
+    events:
+      - httpApi:
+          path: /products
+          method: post
+          responseData:
+            201:
+              description: "Product saved successfully!"
   productList:
     handler: src/handlers/productList/index.handler
     events:

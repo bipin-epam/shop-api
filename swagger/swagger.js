@@ -7,6 +7,23 @@
   },
   "paths": {
     "/products": {
+      "post": {
+        "summary": "createProduct",
+        "description": "",
+        "operationId": "createProduct.post./products",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Product saved successfully!"
+          }
+        }
+      },
       "get": {
         "summary": "productList",
         "description": "",
