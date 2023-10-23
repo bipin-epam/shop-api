@@ -37,9 +37,17 @@ functions:
       - httpApi:
           path: /products
           method: post
+          bodyType: "CreateProductBody"
           responseData:
             201:
               description: "Product saved successfully!"
+              bodyType: "ProductSaved"
+            400:
+              description: "Create product request failed with error"
+              bodyType: "Error"
+            500:
+              description: "There was some error, retry later!"
+              bodyType: "Error"
   productList:
     handler: src/handlers/productList/index.handler
     events:
@@ -49,7 +57,7 @@ functions:
           responseData:
             200:
               description: "Products fetched successfully!"
-              bodyType: "ProductsList"
+              bodyType: "ProductWithStock"
   productById:
     handler: src/handlers/productById/index.handler
     events:

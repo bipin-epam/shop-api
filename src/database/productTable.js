@@ -45,10 +45,11 @@ const createProduct = async ({ title, description, price }) => {
     description,
     price,
   };
-  const result = await client.send(
+  await client.send(
     new PutCommand({
       TableName: PRODUCTS_TABLE,
       Item: item,
+      ConditionExpression: "attribute_not_exists(id)",
     })
   );
 

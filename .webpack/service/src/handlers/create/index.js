@@ -7254,7 +7254,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \***********************************/
 /***/ ((module) => {
 
-eval("module.exports = (message, statusCode = 500) => ({\r\n  statusCode,\r\n  body: JSON.stringify({ message, error }),\r\n});\r\n\n\n//# sourceURL=webpack:///./src/common/createError.js?");
+eval("module.exports = (message, statusCode = 500) => ({\r\n  statusCode,\r\n  body: JSON.stringify({ message }),\r\n});\r\n\n\n//# sourceURL=webpack:///./src/common/createError.js?");
 
 /***/ }),
 
@@ -7314,7 +7314,7 @@ eval("const REGION = \"ap-south-1\";\r\nmodule.exports = { REGION };\r\n\n\n//# 
   \************************************/
 /***/ ((module) => {
 
-eval("module.exports = {\r\n  PRODUCT_NOT_FOUND: \"No such product found!\",\r\n  PRODUCT_FOUND: \"Product found!\",\r\n  PRODUCTS_FETCHED: \"Products fetched successfully!\",\r\n\r\n  PRODUCT_SAVED: \"Product saved successfully!\",\r\n  INVALID_REQUEST: \"Retry your request with correct data!\",\r\n};\r\n\n\n//# sourceURL=webpack:///./src/constants/responses.js?");
+eval("module.exports = {\r\n  PRODUCT_NOT_FOUND: \"No such product found!\",\r\n  PRODUCT_FOUND: \"Product found!\",\r\n  PRODUCTS_FETCHED: \"Products fetched successfully!\",\r\n\r\n  PRODUCT_SAVED: \"Product saved successfully!\",\r\n  INVALID_REQUEST: \"Retry your request with correct data!\",\r\n  SOMETHING_WRONG: \"Something went wrong, please try again!\",\r\n};\r\n\n\n//# sourceURL=webpack:///./src/constants/responses.js?");
 
 /***/ }),
 
@@ -7324,7 +7324,7 @@ eval("module.exports = {\r\n  PRODUCT_NOT_FOUND: \"No such product found!\",\r\n
   \**************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const {\r\n  DynamoDBDocumentClient,\r\n  ScanCommand,\r\n  QueryCommand,\r\n  PutCommand,\r\n} = __webpack_require__(/*! @aws-sdk/lib-dynamodb */ \"./node_modules/@aws-sdk/lib-dynamodb/dist-es/index.js\");\r\n\r\nconst { DynamoDBClient } = __webpack_require__(/*! @aws-sdk/client-dynamodb */ \"./node_modules/@aws-sdk/client-dynamodb/dist-es/index.js\");\r\n\r\nconst { REGION } = __webpack_require__(/*! ../constants/config */ \"./src/constants/config.js\");\r\nconst { v4 } = __webpack_require__(/*! uuid */ \"./node_modules/uuid/dist/esm-node/index.js\");\r\nconst PRODUCTS_TABLE = process.env.PRODUCTS_TABLE ?? \"products\";\r\n\r\nconst client = DynamoDBDocumentClient.from(\r\n  new DynamoDBClient({ region: REGION })\r\n);\r\n\r\n// #region handlers definition...\r\n\r\nconst getAllProducts = async () => {\r\n  const { Items: products } = await client.send(\r\n    new ScanCommand({ TableName: PRODUCTS_TABLE })\r\n  );\r\n  return products;\r\n};\r\n\r\nconst getProduct = async (id) => {\r\n  const { Items: products } = await client.send(\r\n    new QueryCommand({\r\n      TableName: PRODUCTS_TABLE,\r\n      KeyConditionExpression: \"id = :id\",\r\n      ExpressionAttributeValues: {\r\n        \":id\": id,\r\n      },\r\n    })\r\n  );\r\n  return products[0];\r\n};\r\n\r\nconst createProduct = async ({ title, description, price }) => {\r\n  const id = v4();\r\n  const item = {\r\n    id,\r\n    title,\r\n    description,\r\n    price,\r\n  };\r\n  const result = await client.send(\r\n    new PutCommand({\r\n      TableName: PRODUCTS_TABLE,\r\n      Item: item,\r\n    })\r\n  );\r\n\r\n  return item;\r\n};\r\n//#endregion\r\n\r\nmodule.exports = { getAllProducts, getProduct, createProduct };\r\n\n\n//# sourceURL=webpack:///./src/database/productTable.js?");
+eval("const {\r\n  DynamoDBDocumentClient,\r\n  ScanCommand,\r\n  QueryCommand,\r\n  PutCommand,\r\n} = __webpack_require__(/*! @aws-sdk/lib-dynamodb */ \"./node_modules/@aws-sdk/lib-dynamodb/dist-es/index.js\");\r\n\r\nconst { DynamoDBClient } = __webpack_require__(/*! @aws-sdk/client-dynamodb */ \"./node_modules/@aws-sdk/client-dynamodb/dist-es/index.js\");\r\n\r\nconst { REGION } = __webpack_require__(/*! ../constants/config */ \"./src/constants/config.js\");\r\nconst { v4 } = __webpack_require__(/*! uuid */ \"./node_modules/uuid/dist/esm-node/index.js\");\r\nconst PRODUCTS_TABLE = process.env.PRODUCTS_TABLE ?? \"products\";\r\n\r\nconst client = DynamoDBDocumentClient.from(\r\n  new DynamoDBClient({ region: REGION })\r\n);\r\n\r\n// #region handlers definition...\r\n\r\nconst getAllProducts = async () => {\r\n  const { Items: products } = await client.send(\r\n    new ScanCommand({ TableName: PRODUCTS_TABLE })\r\n  );\r\n  return products;\r\n};\r\n\r\nconst getProduct = async (id) => {\r\n  const { Items: products } = await client.send(\r\n    new QueryCommand({\r\n      TableName: PRODUCTS_TABLE,\r\n      KeyConditionExpression: \"id = :id\",\r\n      ExpressionAttributeValues: {\r\n        \":id\": id,\r\n      },\r\n    })\r\n  );\r\n  return products[0];\r\n};\r\n\r\nconst createProduct = async ({ title, description, price }) => {\r\n  const id = \"1ed2809c-1c23-4436-9c4d-cf9dfbc44e57\";\r\n  const item = {\r\n    id,\r\n    title,\r\n    description,\r\n    price,\r\n  };\r\n  await client.send(\r\n    new PutCommand({\r\n      TableName: PRODUCTS_TABLE,\r\n      Item: item,\r\n      ConditionExpression: \"attribute_not_exists(id)\",\r\n    })\r\n  );\r\n\r\n  return item;\r\n};\r\n//#endregion\r\n\r\nmodule.exports = { getAllProducts, getProduct, createProduct };\r\n\n\n//# sourceURL=webpack:///./src/database/productTable.js?");
 
 /***/ }),
 
@@ -7335,7 +7335,7 @@ eval("const {\r\n  DynamoDBDocumentClient,\r\n  ScanCommand,\r\n  QueryCommand,\
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
-eval("\r\n\r\nconst createNotFoundResponse = __webpack_require__(/*! ../../common/createNotFoundResponse */ \"./src/common/createNotFoundResponse.js\");\r\nconst createSuccessResponse = __webpack_require__(/*! ../../common/createSuccessResponse */ \"./src/common/createSuccessResponse.js\");\r\nconst validateRequest = __webpack_require__(/*! ../../common/validateRequest */ \"./src/common/validateRequest.js\");\r\nconst {\r\n  PRODUCT_NOT_FOUND,\r\n  PRODUCT_FOUND,\r\n  PRODUCT_SAVED,\r\n  INVALID_REQUEST,\r\n  SOMETHING_WRONG,\r\n} = __webpack_require__(/*! ../../constants/responses */ \"./src/constants/responses.js\");\r\nconst { ValidationError } = __webpack_require__(/*! joi */ \"./node_modules/joi/lib/index.js\");\r\n\r\nconst { createProduct } = __webpack_require__(/*! ../../database/productTable */ \"./src/database/productTable.js\");\r\nconst { createSchema } = __webpack_require__(/*! ./schema */ \"./src/handlers/create/schema.js\");\r\nconst createInvalidRequest = __webpack_require__(/*! ../../common/createInvalidRequest */ \"./src/common/createInvalidRequest.js\");\r\nconst createError = __webpack_require__(/*! ../../common/createError */ \"./src/common/createError.js\");\r\n\r\nconst buildInvalidationError = (error) => {\r\n  const errors = [];\r\n  for (const { message } of error.details) {\r\n    errors.push(message);\r\n  }\r\n  return errors;\r\n};\r\n\r\nmodule.exports.handler = async (event) => {\r\n  const { body } = event;\r\n  try {\r\n    let requestData = JSON.parse(body);\r\n    await validateRequest(createSchema, requestData);\r\n    const product = await createProduct(requestData);\r\n    return createSuccessResponse(PRODUCT_SAVED, product, 201);\r\n  } catch (e) {\r\n    if (e instanceof ValidationError) {\r\n      return createInvalidRequest(INVALID_REQUEST, buildInvalidationError(e));\r\n    }\r\n    return createError(SOMETHING_WRONG);\r\n  }\r\n};\r\n\n\n//# sourceURL=webpack:///./src/handlers/create/index.js?");
+eval("\r\n\r\nconst createNotFoundResponse = __webpack_require__(/*! ../../common/createNotFoundResponse */ \"./src/common/createNotFoundResponse.js\");\r\nconst createSuccessResponse = __webpack_require__(/*! ../../common/createSuccessResponse */ \"./src/common/createSuccessResponse.js\");\r\nconst validateRequest = __webpack_require__(/*! ../../common/validateRequest */ \"./src/common/validateRequest.js\");\r\nconst {\r\n  PRODUCT_NOT_FOUND,\r\n  PRODUCT_FOUND,\r\n  PRODUCT_SAVED,\r\n  INVALID_REQUEST,\r\n  SOMETHING_WRONG,\r\n} = __webpack_require__(/*! ../../constants/responses */ \"./src/constants/responses.js\");\r\nconst { ValidationError } = __webpack_require__(/*! joi */ \"./node_modules/joi/lib/index.js\");\r\n\r\nconst { createProduct } = __webpack_require__(/*! ../../database/productTable */ \"./src/database/productTable.js\");\r\nconst { createSchema } = __webpack_require__(/*! ./schema */ \"./src/handlers/create/schema.js\");\r\nconst createInvalidRequest = __webpack_require__(/*! ../../common/createInvalidRequest */ \"./src/common/createInvalidRequest.js\");\r\nconst createError = __webpack_require__(/*! ../../common/createError */ \"./src/common/createError.js\");\r\nconst { buildInvalidationError } = __webpack_require__(/*! ../../utils/errorUtils */ \"./src/utils/errorUtils.js\");\r\n\r\nmodule.exports.handler = async (event) => {\r\n  const { body } = event;\r\n  try {\r\n    let requestData = JSON.parse(body);\r\n    await validateRequest(createSchema, requestData);\r\n    const product = await createProduct(requestData);\r\n    return createSuccessResponse(PRODUCT_SAVED, product, 201);\r\n  } catch (e) {\r\n    if (e instanceof ValidationError) {\r\n      return createInvalidRequest(INVALID_REQUEST, buildInvalidationError(e));\r\n    }\r\n    return createError(SOMETHING_WRONG);\r\n  }\r\n};\r\n\n\n//# sourceURL=webpack:///./src/handlers/create/index.js?");
 
 /***/ }),
 
@@ -7346,6 +7346,16 @@ eval("\r\n\r\nconst createNotFoundResponse = __webpack_require__(/*! ../../commo
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 eval("const joi = __webpack_require__(/*! joi */ \"./node_modules/joi/lib/index.js\");\r\n\r\nmodule.exports.createSchema = joi.object({\r\n  title: joi.string().min(1).max(300).required(),\r\n  description: joi.string().min(1).max(500).required(),\r\n  price: joi.number().required().min(0),\r\n});\r\n\n\n//# sourceURL=webpack:///./src/handlers/create/schema.js?");
+
+/***/ }),
+
+/***/ "./src/utils/errorUtils.js":
+/*!*********************************!*\
+  !*** ./src/utils/errorUtils.js ***!
+  \*********************************/
+/***/ ((module) => {
+
+eval("const buildInvalidationError = (error) => {\r\n  const errors = [];\r\n  for (const { message } of error.details) {\r\n    errors.push(message);\r\n  }\r\n  return errors;\r\n};\r\n\r\nmodule.exports = { buildInvalidationError };\r\n\n\n//# sourceURL=webpack:///./src/utils/errorUtils.js?");
 
 /***/ }),
 

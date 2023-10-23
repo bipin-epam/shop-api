@@ -17,10 +17,35 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Body required in the request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateProductBody"
+            }
+          }
+        ],
         "responses": {
           "201": {
-            "description": "Product saved successfully!"
+            "description": "Product saved successfully!",
+            "schema": {
+              "$ref": "#/definitions/ProductSaved"
+            }
+          },
+          "400": {
+            "description": "Create product request failed with error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "There was some error, retry later!",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       },
@@ -39,7 +64,7 @@
           "200": {
             "description": "Products fetched successfully!",
             "schema": {
-              "$ref": "#/definitions/ProductsList"
+              "$ref": "#/definitions/ProductWithStock"
             }
           }
         }
@@ -90,7 +115,7 @@
         },
         "data": {
           "items": {
-            "$ref": "#/definitions/Product"
+            "$ref": "#/definitions/ProductWithStock"
           },
           "title": "ProductsList.data",
           "type": "array"
@@ -141,6 +166,89 @@
       "additionalProperties": false,
       "title": "NotFound",
       "type": "object"
+    },
+    "Error": {
+      "properties": {
+        "message": {
+          "title": "Error.message",
+          "type": "string"
+        },
+        "error": {
+          "title": "Error.error",
+          "type": "string"
+        }
+      },
+      "required": [
+        "message",
+        "error"
+      ],
+      "additionalProperties": false,
+      "title": "Error",
+      "type": "object"
+    },
+    "ProductSaved": {
+      "properties": {
+        "message": {
+          "title": "ProductSaved.message",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Product",
+          "title": "ProductSaved.data"
+        }
+      },
+      "required": [
+        "message",
+        "data"
+      ],
+      "additionalProperties": false,
+      "title": "ProductSaved",
+      "type": "object"
+    },
+    "CreateProductBody": {
+      "properties": {
+        "title": {
+          "title": "CreateProductBody.title",
+          "type": "string"
+        },
+        "description": {
+          "title": "CreateProductBody.description",
+          "type": "string"
+        },
+        "price": {
+          "title": "CreateProductBody.price",
+          "type": "number"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "price"
+      ],
+      "additionalProperties": false,
+      "title": "CreateProductBody",
+      "type": "object"
+    },
+    "ProductWithStock": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Product"
+        },
+        {
+          "properties": {
+            "count": {
+              "title": "count",
+              "type": "number"
+            }
+          },
+          "required": [
+            "count"
+          ],
+          "additionalProperties": false,
+          "type": "object"
+        }
+      ],
+      "title": "ProductWithStock"
     },
     "Product": {
       "properties": {
