@@ -16,14 +16,7 @@ const { createProduct } = require("../../database/productTable");
 const { createSchema } = require("./schema");
 const createInvalidRequest = require("../../common/createInvalidRequest");
 const createError = require("../../common/createError");
-
-const buildInvalidationError = (error) => {
-  const errors = [];
-  for (const { message } of error.details) {
-    errors.push(message);
-  }
-  return errors;
-};
+const { buildInvalidationError } = require("../../utils/errorUtils");
 
 module.exports.handler = async (event) => {
   const { body } = event;
