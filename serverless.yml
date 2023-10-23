@@ -22,6 +22,9 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: ap-south-1
   profile: epam_bipin
+  httpApi:
+    cors: true
+
   environment:
     PRODUCTS_TABLE: "products"
     STOCKS_TABLE: "stocks"
