@@ -48,6 +48,12 @@ functions:
             500:
               description: "There was some error, retry later!"
               bodyType: "Error"
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:PutItem"
+        Resource: "*"
+
   productList:
     handler: src/handlers/productList/index.handler
     events:
@@ -58,6 +64,12 @@ functions:
             200:
               description: "Products fetched successfully!"
               bodyType: "ProductWithStock"
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:Scan"
+        Resource: "*"
+
   productById:
     handler: src/handlers/productById/index.handler
     events:
@@ -71,8 +83,14 @@ functions:
             404:
               description: "No such product found!"
               bodyType: "NotFound"
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:Query"
+        Resource: "*"
 
 plugins:
   - serverless-auto-swagger
   - serverless-offline
   - serverless-webpack
+  - serverless-iam-roles-per-function

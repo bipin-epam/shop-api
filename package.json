@@ -1,7 +1,7 @@
 {
   "scripts": {
     "testWatch": "jest --watchAll",
-    "test": "jest src/handlers/create",
+    "test": "jest",
     "offline": "sls offline start"
   },
   "devDependencies": {
@@ -10,6 +10,7 @@
     "@shelf/jest-dynamodb": "^3.4.2",
     "@types/jest": "^29.5.5",
     "serverless-auto-swagger": "^2.12.0",
+    "serverless-iam-roles-per-function": "^3.2.0",
     "serverless-offline": "^13.2.0",
     "serverless-webpack": "^5.13.0"
   },
