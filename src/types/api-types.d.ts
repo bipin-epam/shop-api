@@ -5,9 +5,13 @@ type Product = {
   title: string;
 };
 
+type ProductWithStock = Product & {
+  count: number;
+};
+
 export interface ProductsList {
   message: string;
-  data: Array<Product>;
+  data: Array<ProductWithStock>;
 }
 
 export interface ProductById {
@@ -18,4 +22,18 @@ export interface ProductById {
 export interface NotFound {
   message: string;
   data: null;
+}
+export interface Error {
+  message: string;
+  error: string;
+}
+
+export interface ProductSaved {
+  message: string;
+  data: Product;
+}
+export interface CreateProductBody {
+  title: string;
+  description: string;
+  price: number;
 }

@@ -22,14 +22,43 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: ap-south-1
   profile: epam_bipin
+  httpApi:
+    cors: true
+
+  environment:
+    PRODUCTS_TABLE: "products"
+    STOCKS_TABLE: "stocks"
 
 package:
   individually: true
   excludeDevDependencies: false
 
 functions:
+  createProduct:
+    handler: src/handlers/create/index.handler
+    events:
+      - httpApi:
+          path: /products
+          method: post
+          bodyType: "CreateProductBody"
+          responseData:
+            201:
+              description: "Product saved successfully!"
+              bodyType: "ProductSaved"
+            400:
+              description: "Create product request failed with error"
+              bodyType: "Error"
+            500:
+              description: "There was some error, retry later!"
+              bodyType: "Error"
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:PutItem"
+        Resource: "*"
+
   productList:
-    handler: src/handlers/productList/index.js
+    handler: src/handlers/productList/index.handler
     events:
       - httpApi:
           path: /products
@@ -37,9 +66,15 @@ functions:
           responseData:
             200:
               description: "Products fetched successfully!"
-              bodyType: "ProductsList"
+              bodyType: "ProductWithStock"
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:Scan"
+        Resource: "*"
+
   productById:
-    handler: src/handlers/productById/index.js
+    handler: src/handlers/productById/index.handler
     events:
       - httpApi:
           path: /products/{id}
@@ -51,8 +86,14 @@ functions:
             404:
               description: "No such product found!"
               bodyType: "NotFound"
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:Query"
+        Resource: "*"
 
 plugins:
   - serverless-auto-swagger
   - serverless-offline
   - serverless-webpack
+  - serverless-iam-roles-per-function
