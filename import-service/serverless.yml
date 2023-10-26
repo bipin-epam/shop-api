@@ -1,14 +1,24 @@
 service: import-service
-frameworkVersion: '3'
+frameworkVersion: "3"
 
 provider:
   name: aws
   runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: ap-south-1
+  profile: epam_bipin
+  httpApi:
+    cors: true
+  environment:
+    BUCKET_NAME: "cloud-course-epam-import-service-bucket"
 
 functions:
   api:
-    handler: index.handler
+    handler: src/handlers/importProductsFile/index.handler
     events:
       - httpApi:
-          path: /
+          path: /import
           method: get
+
+plugins:
+  - serverless-offline
