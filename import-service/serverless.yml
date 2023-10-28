@@ -1,5 +1,9 @@
 service: import-service
 frameworkVersion: "3"
+app: import-service-api
+
+custom:
+  bucket: cloud-course-epam-import-service-bucket
 
 provider:
   name: aws
@@ -10,15 +14,31 @@ provider:
   httpApi:
     cors: true
   environment:
-    BUCKET_NAME: "cloud-course-epam-import-service-bucket"
+    BUCKET_NAME: ${self:custom.bucket}
 
 functions:
-  api:
+  importProductsFile:
     handler: src/handlers/importProductsFile/index.handler
     events:
       - httpApi:
           path: /import
           method: get
+  importFileParser:
+    handler: src/handlers/importFileParser/index.handler
+    events:
+      - s3:
+          event: s3:ObjectCreated:*
+          bucket: ${self:custom.bucket}
+          rules:
+            - prefix: uploaded/
+          existing: true
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - s3:GetObject
+        Resource:
+          - "arn:aws:s3:::${self:custom.bucket}/uploaded/*"
 
 plugins:
   - serverless-offline
+  - serverless-iam-roles-per-function

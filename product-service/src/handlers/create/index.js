@@ -1,11 +1,8 @@
 "use strict";
 
-const createNotFoundResponse = require("../../common/createNotFoundResponse");
 const createSuccessResponse = require("../../common/createSuccessResponse");
 const validateRequest = require("../../common/validateRequest");
 const {
-  PRODUCT_NOT_FOUND,
-  PRODUCT_FOUND,
   PRODUCT_SAVED,
   INVALID_REQUEST,
   SOMETHING_WRONG,
