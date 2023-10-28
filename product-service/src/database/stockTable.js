@@ -5,11 +5,10 @@ const {
 
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 
-const { REGION } = require("../constants/config");
 const STOCKS_TABLE = process.env.STOCKS_TABLE;
 
 const client = DynamoDBDocumentClient.from(
-  new DynamoDBClient({ region: REGION })
+  new DynamoDBClient({ region: process.env.AWS_REGION })
 );
 
 const getAllStocks = async () => {
