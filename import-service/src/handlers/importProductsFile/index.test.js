@@ -37,7 +37,7 @@ describe("ImportProductsFile", () => {
 
     const expectedURL = "https://testurl.com";
 
-    getSignedUrl.mockImplementation((client, cmd, options) => {
+    getSignedUrl.mockImplementation((client, cmd) => {
       expect(cmd).toBeInstanceOf(PutObjectCommand);
       expect(cmd.input.Key).toEqual(expectedKey);
       return expectedURL;
