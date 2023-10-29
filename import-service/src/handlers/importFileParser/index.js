@@ -1,7 +1,30 @@
 const { client } = require("../../clients/s3Client");
-const { GetObjectCommand } = require("@aws-sdk/client-s3");
+const {
+  GetObjectCommand,
+  CopyObjectCommand,
+  DeleteObjectCommand,
+} = require("@aws-sdk/client-s3");
 
 const csv = require("csv-parser");
+
+const streamRead = async (result) => {
+  const content = [];
+
+  return new Promise((res, rej) => {
+    result
+      .pipe(csv())
+      .on("data", (row) => {
+        content.push(row);
+      })
+      .on("end", () => {
+        res(content);
+      })
+      .on("error", (err) => {
+        console.error("Error while parsing the CSV:", err);
+        rej("Error while parsing the csv");
+      });
+  });
+};
 
 module.exports.handler = async (event) => {
   const { Records } = event;
@@ -18,22 +41,24 @@ module.exports.handler = async (event) => {
   });
 
   try {
-    const content = [];
     const result = (await client.send(getObjectCommand)).Body;
-    result
-      .pipe(csv())
-      .on("data", (row) => {
-        console.log("Read a row...");
-        console.log(row);
-        content.push(row);
+    const content = await streamRead(result);
+    console.log("***CSV parsing finished***");
+    console.log(content);
+
+    const fileName = objectKey.split("/")[1];
+
+    await client.send(
+      new CopyObjectCommand({
+        CopySource: `${bucketName}/${objectKey}`,
+        Bucket: bucketName,
+        Key: `parsed/${fileName}`,
       })
-      .on("end", () => {
-        console.log("***CSV parsing finished***");
-        console.log(content);
-      })
-      .on("error", (err) => {
-        console.error("Error while parsing the CSV:", err);
-      });
+    );
+
+    await client.send(
+      new DeleteObjectCommand({ Bucket: bucketName, Key: objectKey })
+    );
   } catch (error) {
     console.error("Error fetching the object from S3:", error);
   }
