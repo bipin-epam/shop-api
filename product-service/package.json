@@ -2,7 +2,7 @@
   "scripts": {
     "testWatch": "jest --watchAll",
     "test": "jest",
-    "offline": "sls offline start"
+    "offline": "sls offline start --watch"
   },
   "devDependencies": {
     "@aws-sdk/client-dynamodb": "^3.433.0",
