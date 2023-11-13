@@ -7,12 +7,11 @@ const {
 
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 
-const { REGION } = require("../constants/config");
 const { v4 } = require("uuid");
 const PRODUCTS_TABLE = process.env.PRODUCTS_TABLE ?? "products";
 
 const client = DynamoDBDocumentClient.from(
-  new DynamoDBClient({ region: REGION })
+  new DynamoDBClient({ region: process.env.AWS_REGION })
 );
 
 // #region handlers definition...
