@@ -1,0 +1,46 @@
+
+Deploying to stage dev
+import-service › waiting
+product-service › waiting
+product-service › deploying
+product-service › Running "serverless deploy --stage dev"
+product-service › Running "serverless" from node_modules
+product-service › Deploying api to stage dev (ap-south-1)
+product-service › Creating Swagger file...
+product-service › Warning: in ./node_modules/@aws-sdk/client-dynamodb/node_modules/@aws-sdk/util-user-agent-node/dist-es/is-crt-available.js 3:78-96
+product-service ›   Module not found: Error: Can't resolve 'aws-crt' in 'C:\Users\Bipin_Gosain\Desktop\jsx_cloud_course\backend_repo\shop-api\product-service\node_modules\@aws-sdk\client-dynamodb\node_modules\@aws-sdk\util-user-agent-node\dist-es'
+product-service › Warning: in ./node_modules/@aws-sdk/client-dynamodb/node_modules/@aws-sdk/util-user-agent-node/dist-es/is-crt-available.js 3:78-96
+product-service ›   Module not found: Error: Can't resolve 'aws-crt' in 'C:\Users\Bipin_Gosain\Desktop\jsx_cloud_course\backend_repo\shop-api\product-service\node_modules\@aws-sdk\client-dynamodb\node_modules\@aws-sdk\util-user-agent-node\dist-es'
+product-service › Warning: in ./node_modules/@aws-sdk/client-dynamodb/node_modules/@aws-sdk/util-user-agent-node/dist-es/is-crt-available.js 3:78-96
+product-service ›   Module not found: Error: Can't resolve 'aws-crt' in 'C:\Users\Bipin_Gosain\Desktop\jsx_cloud_course\backend_repo\shop-api\product-service\node_modules\@aws-sdk\client-dynamodb\node_modules\@aws-sdk\util-user-agent-node\dist-es'
+product-service › No changes to deploy. Deployment skipped. (17s)
+product-service › Need a faster logging experience than CloudWatch? Try our Dev Mode in Console: run "serverless dev"
+product-service › no changes
+import-service › deploying
+import-service › Running "serverless deploy --stage dev --param catalogItemsQueue=https://sqs.ap-south-1.amazonaws.com/392849795078/api-dev-catalogItemsQueue-v4I9CPvLd1im --param catalogItemsQueueArn=arn:aws:sqs:ap-south-1:392849795078:api-dev-catalogItemsQueue-v4I9CPvLd1im"
+import-service › Running "serverless" from node_modules
+import-service › Deploying import-service to stage dev (ap-south-1)
+import-service › ✔ Service deployed to stack import-service-dev (53s)
+import-service › endpoint: GET - https://h7j3jy4wrj.execute-api.ap-south-1.amazonaws.com/import
+import-service › functions:
+import-service ›   importProductsFile: import-service-dev-importProductsFile (4.5 MB)
+import-service ›   importFileParser: import-service-dev-importFileParser (4.5 MB)
+import-service › Need a faster logging experience than CloudWatch? Try our Dev Mode in Console: run "serverless dev"
+import-service › Running "serverless info --verbose --stage dev --param catalogItemsQueue=https://sqs.ap-south-1.amazonaws.com/392849795078/api-dev-catalogItemsQueue-v4I9CPvLd1im --param catalogItemsQueueArn=arn:aws:sqs:ap-south-1:392849795078:api-dev-catalogItemsQueue-v4I9CPvLd1im"
+import-service › Running "serverless" from node_modules
+import-service › service: import-service
+import-service › stage: dev
+import-service › region: ap-south-1
+import-service › stack: import-service-dev
+import-service › endpoint: GET - https://h7j3jy4wrj.execute-api.ap-south-1.amazonaws.com/import
+import-service › functions:
+import-service ›   importProductsFile: import-service-dev-importProductsFile
+import-service ›   importFileParser: import-service-dev-importFileParser
+import-service › 
+import-service › Stack Outputs:
+import-service ›   ImportProductsFileLambdaFunctionQualifiedArn: arn:aws:lambda:ap-south-1:392849795078:function:import-service-dev-importProductsFile:50
+import-service ›   ImportFileParserLambdaFunctionQualifiedArn: arn:aws:lambda:ap-south-1:392849795078:function:import-service-dev-importFileParser:49
+import-service ›   HttpApiId: h7j3jy4wrj
+import-service ›   ServerlessDeploymentBucketName: import-service-dev-serverlessdeploymentbucket-13c01qogg56p
+import-service ›   HttpApiUrl: https://h7j3jy4wrj.execute-api.ap-south-1.amazonaws.com
+import-service › deployed

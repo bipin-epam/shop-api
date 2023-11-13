@@ -6,6 +6,7 @@ const {
 } = require("@aws-sdk/client-s3");
 
 const csv = require("csv-parser");
+const { sendProductToQueue } = require("../../clients/sqsClient");
 
 const streamRead = async (result) => {
   const content = [];
@@ -27,6 +28,8 @@ const streamRead = async (result) => {
 };
 
 module.exports.handler = async (event) => {
+  const { QUEUE_NAME } = process.env;
+
   const { Records } = event;
   const {
     s3: {
@@ -42,9 +45,14 @@ module.exports.handler = async (event) => {
 
   try {
     const result = (await client.send(getObjectCommand)).Body;
-    const content = await streamRead(result);
-    console.log("***CSV parsing finished***");
-    console.log(content);
+    const products = await streamRead(result);
+
+    console.log(products);
+
+    for (const product of products) {
+      const result = await sendProductToQueue(product);
+      console.log(result);
+    }
 
     const fileName = objectKey.split("/")[1];
 
