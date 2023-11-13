@@ -92,8 +92,21 @@ functions:
           - "dynamodb:Query"
         Resource: "*"
 
+  catalogBatchProcess:
+    handler: src/handlers/catalogBatchProcess/index.handler
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - catalogItemsQueue
+              - Arn
 plugins:
   - serverless-auto-swagger
   - serverless-offline
   - serverless-webpack
   - serverless-iam-roles-per-function
+
+resources:
+  Resources:
+    catalogItemsQueue:
+      Type: AWS::SQS::Queue
