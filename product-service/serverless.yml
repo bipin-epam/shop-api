@@ -110,3 +110,9 @@ resources:
   Resources:
     catalogItemsQueue:
       Type: AWS::SQS::Queue
+
+  Outputs:
+    catalogItemsQueue:
+      Value: !Ref catalogItemsQueue
+    catalogItemsQueueArn:
+      Value: !GetAtt catalogItemsQueue.Arn
