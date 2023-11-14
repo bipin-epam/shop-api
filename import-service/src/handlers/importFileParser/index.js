@@ -46,13 +46,7 @@ module.exports.handler = async (event) => {
   try {
     const result = (await client.send(getObjectCommand)).Body;
     const products = await streamRead(result);
-
-    console.log(products);
-
-    for (const product of products) {
-      const result = await sendProductToQueue(product);
-      console.log(result);
-    }
+    await sendProductToQueue(products);
 
     const fileName = objectKey.split("/")[1];
 

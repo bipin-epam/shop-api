@@ -93,6 +93,8 @@ functions:
         Resource: "*"
 
   catalogBatchProcess:
+    environment:
+      SNS_ARN: !Ref createProductTopic
     handler: src/handlers/catalogBatchProcess/index.handler
     events:
       - sqs:
@@ -100,6 +102,16 @@ functions:
             Fn::GetAtt:
               - catalogItemsQueue
               - Arn
+          batchSize: 5
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:PutItem"
+        Resource: "*"
+      - Effect: "Allow"
+        Action:
+          - "sns:Publish"
+        Resource: !Ref createProductTopic
 plugins:
   - serverless-auto-swagger
   - serverless-offline
@@ -110,6 +122,14 @@ resources:
   Resources:
     catalogItemsQueue:
       Type: AWS::SQS::Queue
+    createProductTopic:
+      Type: AWS::SNS::Topic
+    productTopicSubscription:
+      Type: AWS::SNS::Subscription
+      Properties:
+        Endpoint: bipin_gosain@epam.com
+        Protocol: email
+        TopicArn: !Ref createProductTopic
 
   Outputs:
     catalogItemsQueue:

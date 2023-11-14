@@ -11,11 +11,11 @@
         "SwaggerJSONLambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:api-dev-swagger-json:2",
         "catalogItemsQueueArn": "arn:aws:sqs:ap-south-1:392849795078:api-dev-catalogItemsQueue-v4I9CPvLd1im",
         "SwaggerUILambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:api-dev-swagger-ui:2",
-        "ProductListLambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:api-dev-productList:9",
-        "CreateProductLambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:api-dev-createProduct:2",
-        "ProductByIdLambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:api-dev-productById:8",
+        "ProductListLambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:api-dev-productList:10",
+        "CreateProductLambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:api-dev-createProduct:3",
+        "ProductByIdLambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:api-dev-productById:9",
         "HttpApiId": "fnuuronv50",
-        "CatalogBatchProcessLambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:api-dev-catalogBatchProcess:1",
+        "CatalogBatchProcessLambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:api-dev-catalogBatchProcess:8",
         "catalogItemsQueue": "https://sqs.ap-south-1.amazonaws.com/392849795078/api-dev-catalogItemsQueue-v4I9CPvLd1im",
         "ServerlessDeploymentBucketName": "api-dev-serverlessdeploymentbucket-1tka0o57ss09h",
         "HttpApiUrl": "https://fnuuronv50.execute-api.ap-south-1.amazonaws.com"
@@ -26,8 +26,8 @@
         "detectedFrameworkVersion": "3.35.2"
       },
       "outputs": {
-        "ImportProductsFileLambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:import-service-dev-importProductsFile:50",
-        "ImportFileParserLambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:import-service-dev-importFileParser:49",
+        "ImportProductsFileLambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:import-service-dev-importProductsFile:52",
+        "ImportFileParserLambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:import-service-dev-importFileParser:51",
         "HttpApiId": "h7j3jy4wrj",
         "ServerlessDeploymentBucketName": "import-service-dev-serverlessdeploymentbucket-13c01qogg56p",
         "HttpApiUrl": "https://h7j3jy4wrj.execute-api.ap-south-1.amazonaws.com"
