@@ -1,9 +1,8 @@
-const { client } = require("../../clients/s3Client");
 const {
-  GetObjectCommand,
-  CopyObjectCommand,
-  DeleteObjectCommand,
-} = require("@aws-sdk/client-s3");
+  copyFile,
+  removeFile,
+  getFileFromS3,
+} = require("../../clients/s3Client");
 
 const csv = require("csv-parser");
 const { sendProductToQueue } = require("../../clients/sqsClient");
@@ -28,8 +27,6 @@ const streamRead = async (result) => {
 };
 
 module.exports.handler = async (event) => {
-  const { QUEUE_NAME } = process.env;
-
   const { Records } = event;
   const {
     s3: {
@@ -38,29 +35,20 @@ module.exports.handler = async (event) => {
     },
   } = Records[0];
 
-  const getObjectCommand = new GetObjectCommand({
-    Bucket: bucketName,
-    Key: objectKey,
-  });
-
   try {
-    const result = (await client.send(getObjectCommand)).Body;
+    const result = await getFileFromS3(bucketName, objectKey);
     const products = await streamRead(result);
     await sendProductToQueue(products);
 
     const fileName = objectKey.split("/")[1];
 
-    await client.send(
-      new CopyObjectCommand({
-        CopySource: `${bucketName}/${objectKey}`,
-        Bucket: bucketName,
-        Key: `parsed/${fileName}`,
-      })
+    await copyFile(
+      `${bucketName}/${objectKey}`,
+      bucketName,
+      `parsed/${fileName}`
     );
 
-    await client.send(
-      new DeleteObjectCommand({ Bucket: bucketName, Key: objectKey })
-    );
+    await removeFile(bucketName, objectKey);
   } catch (error) {
     console.error("Error fetching the object from S3:", error);
   }
