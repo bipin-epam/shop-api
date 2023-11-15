@@ -15,7 +15,7 @@ product-service › Warning: in ./node_modules/@aws-sdk/client-dynamodb/node_mod
 product-service ›   Module not found: Error: Can't resolve 'aws-crt' in 'C:\Users\Bipin_Gosain\Desktop\jsx_cloud_course\backend_repo\shop-api\product-service\node_modules\@aws-sdk\client-dynamodb\node_modules\@aws-sdk\util-user-agent-node\dist-es'
 product-service › Warning: in ./node_modules/@aws-sdk/client-dynamodb/node_modules/@aws-sdk/util-user-agent-node/dist-es/is-crt-available.js 3:78-96
 product-service ›   Module not found: Error: Can't resolve 'aws-crt' in 'C:\Users\Bipin_Gosain\Desktop\jsx_cloud_course\backend_repo\shop-api\product-service\node_modules\@aws-sdk\client-dynamodb\node_modules\@aws-sdk\util-user-agent-node\dist-es'
-product-service › ✔ Service deployed to stack api-dev (55s)
+product-service › ✔ Service deployed to stack api-dev (63s)
 product-service › endpoints:
 product-service ›   POST - https://fnuuronv50.execute-api.ap-south-1.amazonaws.com/products
 product-service ›   GET - https://fnuuronv50.execute-api.ap-south-1.amazonaws.com/products
@@ -29,7 +29,7 @@ product-service ›   productById: api-dev-productById (85 kB)
 product-service ›   catalogBatchProcess: api-dev-catalogBatchProcess (107 kB)
 product-service ›   swaggerUI: api-dev-swagger-ui (1.3 kB)
 product-service ›   swaggerJSON: api-dev-swagger-json (1.2 kB)
-product-service › Need a faster logging experience than CloudWatch? Try our Dev Mode in Console: run "serverless dev"
+product-service › Monitor all your API routes with Serverless Console: run "serverless --console"
 product-service › Running "serverless info --verbose --stage dev"
 product-service › Running "serverless" from node_modules
 product-service › service: api
@@ -45,16 +45,15 @@ product-service ›   createProduct: api-dev-createProduct
 product-service ›   productList: api-dev-productList
 product-service ›   productById: api-dev-productById
 product-service ›   catalogBatchProcess: api-dev-catalogBatchProcess
-product-service › 
 product-service › Stack Outputs:
 product-service ›   SwaggerJSONLambdaFunctionQualifiedArn: arn:aws:lambda:ap-south-1:392849795078:function:api-dev-swagger-json:2
 product-service ›   catalogItemsQueueArn: arn:aws:sqs:ap-south-1:392849795078:api-dev-catalogItemsQueue-v4I9CPvLd1im
 product-service ›   SwaggerUILambdaFunctionQualifiedArn: arn:aws:lambda:ap-south-1:392849795078:function:api-dev-swagger-ui:2
-product-service ›   ProductListLambdaFunctionQualifiedArn: arn:aws:lambda:ap-south-1:392849795078:function:api-dev-productList:10
-product-service ›   CreateProductLambdaFunctionQualifiedArn: arn:aws:lambda:ap-south-1:392849795078:function:api-dev-createProduct:3
-product-service ›   ProductByIdLambdaFunctionQualifiedArn: arn:aws:lambda:ap-south-1:392849795078:function:api-dev-productById:9
+product-service ›   ProductListLambdaFunctionQualifiedArn: arn:aws:lambda:ap-south-1:392849795078:function:api-dev-productList:14
+product-service ›   CreateProductLambdaFunctionQualifiedArn: arn:aws:lambda:ap-south-1:392849795078:function:api-dev-createProduct:7
+product-service ›   ProductByIdLambdaFunctionQualifiedArn: arn:aws:lambda:ap-south-1:392849795078:function:api-dev-productById:13
 product-service ›   HttpApiId: fnuuronv50
-product-service ›   CatalogBatchProcessLambdaFunctionQualifiedArn: arn:aws:lambda:ap-south-1:392849795078:function:api-dev-catalogBatchProcess:8
+product-service ›   CatalogBatchProcessLambdaFunctionQualifiedArn: arn:aws:lambda:ap-south-1:392849795078:function:api-dev-catalogBatchProcess:15
 product-service ›   catalogItemsQueue: https://sqs.ap-south-1.amazonaws.com/392849795078/api-dev-catalogItemsQueue-v4I9CPvLd1im
 product-service ›   ServerlessDeploymentBucketName: api-dev-serverlessdeploymentbucket-1tka0o57ss09h
 product-service ›   HttpApiUrl: https://fnuuronv50.execute-api.ap-south-1.amazonaws.com
@@ -63,7 +62,6 @@ import-service › deploying
 import-service › Running "serverless deploy --stage dev --param catalogItemsQueue=https://sqs.ap-south-1.amazonaws.com/392849795078/api-dev-catalogItemsQueue-v4I9CPvLd1im --param catalogItemsQueueArn=arn:aws:sqs:ap-south-1:392849795078:api-dev-catalogItemsQueue-v4I9CPvLd1im"
 import-service › Running "serverless" from node_modules
 import-service › Deploying import-service to stage dev (ap-south-1)
-import-service › No changes to deploy. Deployment skipped. (12s)
+import-service › No changes to deploy. Deployment skipped. (19s)
 import-service › Need a faster logging experience than CloudWatch? Try our Dev Mode in Console: run "serverless dev"
 import-service › no changes
-Request network error: FetchError: network timeout at: https://sp-notifications-and-metrics-v1.serverless-platform.com/
