@@ -15,6 +15,7 @@ provider:
     cors: true
   environment:
     BUCKET_NAME: ${self:custom.bucket}
+    QUEUE_URL: ${param:catalogItemsQueue}
 
 functions:
   importProductsFile:
@@ -48,6 +49,11 @@ functions:
         Resource:
           - "arn:aws:s3:::${self:custom.bucket}/uploaded/*"
           - "arn:aws:s3:::${self:custom.bucket}/parsed/*"
+      - Effect: Allow
+        Action:
+          - sqs:SendMessage
+        Resource:
+          - ${param:catalogItemsQueueArn}
 
 plugins:
   - serverless-offline

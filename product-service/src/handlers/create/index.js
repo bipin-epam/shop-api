@@ -17,14 +17,12 @@ const { buildInvalidationError } = require("../../utils/errorUtils");
 
 module.exports.handler = async (event) => {
   const { body } = event;
-  console.log(body);
   try {
     let requestData = JSON.parse(body);
     await validateRequest(createSchema, requestData);
     const product = await createProduct(requestData);
     return createSuccessResponse(PRODUCT_SAVED, product, 201);
   } catch (e) {
-    console.log(e);
     if (e instanceof ValidationError) {
       return createInvalidRequest(INVALID_REQUEST, buildInvalidationError(e));
     }

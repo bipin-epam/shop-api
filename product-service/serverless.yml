@@ -92,8 +92,56 @@ functions:
           - "dynamodb:Query"
         Resource: "*"
 
+  catalogBatchProcess:
+    environment:
+      SNS_ARN: !Ref createProductTopic
+    handler: src/handlers/catalogBatchProcess/index.handler
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - catalogItemsQueue
+              - Arn
+          batchSize: 5
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:PutItem"
+        Resource: "*"
+      - Effect: "Allow"
+        Action:
+          - "sns:Publish"
+        Resource: !Ref createProductTopic
 plugins:
   - serverless-auto-swagger
   - serverless-offline
   - serverless-webpack
   - serverless-iam-roles-per-function
+
+resources:
+  Resources:
+    catalogItemsQueue:
+      Type: AWS::SQS::Queue
+    createProductTopic:
+      Type: AWS::SNS::Topic
+
+    productTopicSubscription:
+      Type: AWS::SNS::Subscription
+      Properties:
+        Endpoint: bipin_gosain@epam.com
+        Protocol: email
+        TopicArn: !Ref createProductTopic
+    productTopicSubscriptionHighValue:
+      Type: AWS::SNS::Subscription
+      Properties:
+        Endpoint: bipingosain3492@gmail.com
+        Protocol: email
+        TopicArn: !Ref createProductTopic
+        FilterPolicyScope: MessageAttributes
+        FilterPolicy: { "maxPrice": [{ "numeric": [">", 1000] }] }
+
+  Outputs:
+    catalogItemsQueue:
+      Value: !Ref catalogItemsQueue
+    catalogItemsQueueArn:
+      Value: !GetAtt catalogItemsQueue.Arn
