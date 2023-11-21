@@ -1,0 +1,9 @@
+services:
+  import-service:
+    path: import-service
+    params:
+      catalogItemsQueue: ${product-service.catalogItemsQueue}
+      catalogItemsQueueArn: ${product-service.catalogItemsQueueArn}
+
+  product-service:
+    path: product-service
