@@ -208,7 +208,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/api/dev/1700269996124-2023-11-18T01:13:16.124Z/createProduct.zip"
+          "S3Key": "serverless/api/dev/1700898861009-2023-11-25T07:54:21.009Z/createProduct.zip"
         },
         "Handler": "src/handlers/create/index.handler",
         "Runtime": "nodejs18.x",
@@ -240,7 +240,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/api/dev/1700269996124-2023-11-18T01:13:16.124Z/productList.zip"
+          "S3Key": "serverless/api/dev/1700898861009-2023-11-25T07:54:21.009Z/productList.zip"
         },
         "Handler": "src/handlers/productList/index.handler",
         "Runtime": "nodejs18.x",
@@ -272,7 +272,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/api/dev/1700269996124-2023-11-18T01:13:16.124Z/productById.zip"
+          "S3Key": "serverless/api/dev/1700898861009-2023-11-25T07:54:21.009Z/productById.zip"
         },
         "Handler": "src/handlers/productById/index.handler",
         "Runtime": "nodejs18.x",
@@ -304,7 +304,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/api/dev/1700269996124-2023-11-18T01:13:16.124Z/catalogBatchProcess.zip"
+          "S3Key": "serverless/api/dev/1700898861009-2023-11-25T07:54:21.009Z/catalogBatchProcess.zip"
         },
         "Handler": "src/handlers/catalogBatchProcess/index.handler",
         "Runtime": "nodejs18.x",
@@ -339,7 +339,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/api/dev/1700269996124-2023-11-18T01:13:16.124Z/swaggerUI.zip"
+          "S3Key": "serverless/api/dev/1700898861009-2023-11-25T07:54:21.009Z/swaggerUI.zip"
         },
         "Handler": "swagger/swagger-html.handler",
         "Runtime": "nodejs18.x",
@@ -367,7 +367,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/api/dev/1700269996124-2023-11-18T01:13:16.124Z/swaggerJSON.zip"
+          "S3Key": "serverless/api/dev/1700898861009-2023-11-25T07:54:21.009Z/swaggerJSON.zip"
         },
         "Handler": "swagger/swagger-json.handler",
         "Runtime": "nodejs18.x",
@@ -398,6 +398,16 @@
         "CodeSha256": "8/dkMggAFZOO4mrA8HgTbA0A2fdoNxuAta2C0sBdcLk="
       }
     },
+    "SwaggerJSONLambdaVersioncALSk6frVgzx4jFeY1SNzeSEj0N7Hy6pJUWcv9znDhs": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "SwaggerJSONLambdaFunction"
+        },
+        "CodeSha256": "B1FvvYGyoYFtBrUq/M5Y3jc5kIPvOsAT05l4iyU/U28="
+      }
+    },
     "ProductByIdLambdaVersionEr9LipW3wNqpaT41JBIytuiW5yO0QfVFYnXIYhhAXE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
@@ -406,16 +416,6 @@
           "Ref": "ProductByIdLambdaFunction"
         },
         "CodeSha256": "t52aZYk3fxOM1IL3SCX7UnSN5jUW3mbILCd+lwCueMk="
-      }
-    },
-    "ProductListLambdaVersion605Na78I6mcLe0rVjUHr3vXvb5TpENBZpXgIEV49Q": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "ProductListLambdaFunction"
-        },
-        "CodeSha256": "Pm1RTOqB7JcSfWsQObJz7d6r4H+eoqx0i3IMiVzQ69g="
       }
     },
     "CatalogBatchProcessLambdaVersionmq0U53AfRUsDzbclRGJ9eBkT0bvFbwddy8BF2eXnks": {
@@ -428,14 +428,14 @@
         "CodeSha256": "tIP/8TmDE5yBCr3MNybKcAe+AGoJ+VRS/u2R59JXxV4="
       }
     },
-    "SwaggerJSONLambdaVersioncALSk6frVgzx4jFeY1SNzeSEj0N7Hy6pJUWcv9znDhs": {
+    "ProductListLambdaVersion605Na78I6mcLe0rVjUHr3vXvb5TpENBZpXgIEV49Q": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "SwaggerJSONLambdaFunction"
+          "Ref": "ProductListLambdaFunction"
         },
-        "CodeSha256": "B1FvvYGyoYFtBrUq/M5Y3jc5kIPvOsAT05l4iyU/U28="
+        "CodeSha256": "Pm1RTOqB7JcSfWsQObJz7d6r4H+eoqx0i3IMiVzQ69g="
       }
     },
     "CreateProductLambdaVersionNXNc7q7lxsm2rae5j4lpSC4Uwr5rTpAIQ5AYyNiPY": {
@@ -1267,6 +1267,15 @@
         "Name": "sls-api-dev-SwaggerUILambdaFunctionQualifiedArn"
       }
     },
+    "SwaggerJSONLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "SwaggerJSONLambdaVersioncALSk6frVgzx4jFeY1SNzeSEj0N7Hy6pJUWcv9znDhs"
+      },
+      "Export": {
+        "Name": "sls-api-dev-SwaggerJSONLambdaFunctionQualifiedArn"
+      }
+    },
     "ProductByIdLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
@@ -1274,15 +1283,6 @@
       },
       "Export": {
         "Name": "sls-api-dev-ProductByIdLambdaFunctionQualifiedArn"
-      }
-    },
-    "ProductListLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "ProductListLambdaVersion605Na78I6mcLe0rVjUHr3vXvb5TpENBZpXgIEV49Q"
-      },
-      "Export": {
-        "Name": "sls-api-dev-ProductListLambdaFunctionQualifiedArn"
       }
     },
     "CatalogBatchProcessLambdaFunctionQualifiedArn": {
@@ -1294,13 +1294,13 @@
         "Name": "sls-api-dev-CatalogBatchProcessLambdaFunctionQualifiedArn"
       }
     },
-    "SwaggerJSONLambdaFunctionQualifiedArn": {
+    "ProductListLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "SwaggerJSONLambdaVersioncALSk6frVgzx4jFeY1SNzeSEj0N7Hy6pJUWcv9znDhs"
+        "Ref": "ProductListLambdaVersion605Na78I6mcLe0rVjUHr3vXvb5TpENBZpXgIEV49Q"
       },
       "Export": {
-        "Name": "sls-api-dev-SwaggerJSONLambdaFunctionQualifiedArn"
+        "Name": "sls-api-dev-ProductListLambdaFunctionQualifiedArn"
       }
     },
     "CreateProductLambdaFunctionQualifiedArn": {
