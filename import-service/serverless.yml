@@ -1,6 +1,6 @@
 service: import-service
 frameworkVersion: "3"
-app: import-service-api
+app: shop-api
 
 custom:
   bucket: cloud-course-epam-import-service-bucket
@@ -13,6 +13,13 @@ provider:
   profile: epam_bipin
   httpApi:
     cors: true
+    authorizers:
+      basicAuthorizer:
+        type: request
+        functionArn: arn:aws:lambda:ap-south-1:392849795078:function:authorization-service-dev-basicAuthorizer
+        identitySource:
+          - $request.header.Authorization
+
   environment:
     BUCKET_NAME: ${self:custom.bucket}
     QUEUE_URL: ${param:catalogItemsQueue}
@@ -24,6 +31,8 @@ functions:
       - httpApi:
           path: /import
           method: get
+          authorizer: basicAuthorizer
+
     iamRoleStatements:
       - Effect: Allow
         Action:

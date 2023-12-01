@@ -124,27 +124,16 @@
                   {
                     "Effect": "Allow",
                     "Principal": {
-                      "Service": [
-                        "lambda.amazonaws.com"
-                      ]
+                      "Service": ["lambda.amazonaws.com"]
                     },
-                    "Action": [
-                      "sts:AssumeRole"
-                    ]
+                    "Action": ["sts:AssumeRole"]
                   }
                 ]
               },
               "Policies": [
                 {
                   "PolicyName": {
-                    "Fn::Join": [
-                      "-",
-                      [
-                        "api",
-                        "dev",
-                        "lambda"
-                      ]
-                    ]
+                    "Fn::Join": ["-", ["api", "dev", "lambda"]]
                   },
                   "PolicyDocument": {
                     "Version": "2012-10-17",
@@ -164,9 +153,7 @@
                       },
                       {
                         "Effect": "Allow",
-                        "Action": [
-                          "logs:PutLogEvents"
-                        ],
+                        "Action": ["logs:PutLogEvents"],
                         "Resource": [
                           {
                             "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/api-dev*:*:*"
@@ -194,10 +181,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::GetAtt": [
-                              "catalogItemsQueue",
-                              "Arn"
-                            ]
+                            "Fn::GetAtt": ["catalogItemsQueue", "Arn"]
                           }
                         ]
                       }
@@ -228,7 +212,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/api/dev/1700567376603-2023-11-21T11:49:36.603Z/createProduct.zip"
+                "S3Key": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z/createProduct.zip"
               },
               "Handler": "src/handlers/create/index.handler",
               "Runtime": "nodejs18.x",
@@ -242,10 +226,7 @@
                 }
               },
               "Role": {
-                "Fn::GetAtt": [
-                  "CreateProductIamRoleLambdaExecution",
-                  "Arn"
-                ]
+                "Fn::GetAtt": ["CreateProductIamRoleLambdaExecution", "Arn"]
               }
             },
             "DependsOn": [
@@ -260,7 +241,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/api/dev/1700567376603-2023-11-21T11:49:36.603Z/productList.zip"
+                "S3Key": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z/productList.zip"
               },
               "Handler": "src/handlers/productList/index.handler",
               "Runtime": "nodejs18.x",
@@ -274,10 +255,7 @@
                 }
               },
               "Role": {
-                "Fn::GetAtt": [
-                  "ProductListIamRoleLambdaExecution",
-                  "Arn"
-                ]
+                "Fn::GetAtt": ["ProductListIamRoleLambdaExecution", "Arn"]
               }
             },
             "DependsOn": [
@@ -292,7 +270,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/api/dev/1700567376603-2023-11-21T11:49:36.603Z/productById.zip"
+                "S3Key": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z/productById.zip"
               },
               "Handler": "src/handlers/productById/index.handler",
               "Runtime": "nodejs18.x",
@@ -306,10 +284,7 @@
                 }
               },
               "Role": {
-                "Fn::GetAtt": [
-                  "ProductByIdIamRoleLambdaExecution",
-                  "Arn"
-                ]
+                "Fn::GetAtt": ["ProductByIdIamRoleLambdaExecution", "Arn"]
               }
             },
             "DependsOn": [
@@ -324,7 +299,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/api/dev/1700567376603-2023-11-21T11:49:36.603Z/catalogBatchProcess.zip"
+                "S3Key": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z/catalogBatchProcess.zip"
               },
               "Handler": "src/handlers/catalogBatchProcess/index.handler",
               "Runtime": "nodejs18.x",
@@ -359,7 +334,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/api/dev/1700567376603-2023-11-21T11:49:36.603Z/swaggerUI.zip"
+                "S3Key": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z/swaggerUI.zip"
               },
               "Handler": "swagger/swagger-html.handler",
               "Runtime": "nodejs18.x",
@@ -373,10 +348,7 @@
                 }
               },
               "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
+                "Fn::GetAtt": ["IamRoleLambdaExecution", "Arn"]
               }
             }
           },
@@ -387,7 +359,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/api/dev/1700567376603-2023-11-21T11:49:36.603Z/swaggerJSON.zip"
+                "S3Key": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z/swaggerJSON.zip"
               },
               "Handler": "swagger/swagger-json.handler",
               "Runtime": "nodejs18.x",
@@ -401,10 +373,7 @@
                 }
               },
               "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
+                "Fn::GetAtt": ["IamRoleLambdaExecution", "Arn"]
               }
             }
           },
@@ -438,16 +407,6 @@
               "CodeSha256": "Pm1RTOqB7JcSfWsQObJz7d6r4H+eoqx0i3IMiVzQ69g="
             }
           },
-          "ProductByIdLambdaVersionEr9LipW3wNqpaT41JBIytuiW5yO0QfVFYnXIYhhAXE": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "ProductByIdLambdaFunction"
-              },
-              "CodeSha256": "t52aZYk3fxOM1IL3SCX7UnSN5jUW3mbILCd+lwCueMk="
-            }
-          },
           "CatalogBatchProcessLambdaVersionmq0U53AfRUsDzbclRGJ9eBkT0bvFbwddy8BF2eXnks": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
@@ -456,6 +415,16 @@
                 "Ref": "CatalogBatchProcessLambdaFunction"
               },
               "CodeSha256": "tIP/8TmDE5yBCr3MNybKcAe+AGoJ+VRS/u2R59JXxV4="
+            }
+          },
+          "ProductByIdLambdaVersionEr9LipW3wNqpaT41JBIytuiW5yO0QfVFYnXIYhhAXE": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "ProductByIdLambdaFunction"
+              },
+              "CodeSha256": "t52aZYk3fxOM1IL3SCX7UnSN5jUW3mbILCd+lwCueMk="
             }
           },
           "CreateProductLambdaVersionNXNc7q7lxsm2rae5j4lpSC4Uwr5rTpAIQ5AYyNiPY": {
@@ -474,16 +443,10 @@
             "Properties": {
               "BatchSize": 5,
               "EventSourceArn": {
-                "Fn::GetAtt": [
-                  "catalogItemsQueue",
-                  "Arn"
-                ]
+                "Fn::GetAtt": ["catalogItemsQueue", "Arn"]
               },
               "FunctionName": {
-                "Fn::GetAtt": [
-                  "CatalogBatchProcessLambdaFunction",
-                  "Arn"
-                ]
+                "Fn::GetAtt": ["CatalogBatchProcessLambdaFunction", "Arn"]
               },
               "Enabled": true
             }
@@ -503,14 +466,8 @@
                   "X-Amz-User-Agent",
                   "X-Amzn-Trace-Id"
                 ],
-                "AllowMethods": [
-                  "OPTIONS",
-                  "POST",
-                  "GET"
-                ],
-                "AllowOrigins": [
-                  "*"
-                ]
+                "AllowMethods": ["OPTIONS", "POST", "GET"],
+                "AllowOrigins": ["*"]
               }
             }
           },
@@ -531,10 +488,7 @@
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
-                "Fn::GetAtt": [
-                  "CreateProductLambdaFunction",
-                  "Arn"
-                ]
+                "Fn::GetAtt": ["CreateProductLambdaFunction", "Arn"]
               },
               "Action": "lambda:InvokeFunction",
               "Principal": "apigateway.amazonaws.com",
@@ -603,10 +557,7 @@
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
-                "Fn::GetAtt": [
-                  "ProductListLambdaFunction",
-                  "Arn"
-                ]
+                "Fn::GetAtt": ["ProductListLambdaFunction", "Arn"]
               },
               "Action": "lambda:InvokeFunction",
               "Principal": "apigateway.amazonaws.com",
@@ -675,10 +626,7 @@
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
-                "Fn::GetAtt": [
-                  "ProductByIdLambdaFunction",
-                  "Arn"
-                ]
+                "Fn::GetAtt": ["ProductByIdLambdaFunction", "Arn"]
               },
               "Action": "lambda:InvokeFunction",
               "Principal": "apigateway.amazonaws.com",
@@ -747,10 +695,7 @@
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
-                "Fn::GetAtt": [
-                  "SwaggerUILambdaFunction",
-                  "Arn"
-                ]
+                "Fn::GetAtt": ["SwaggerUILambdaFunction", "Arn"]
               },
               "Action": "lambda:InvokeFunction",
               "Principal": "apigateway.amazonaws.com",
@@ -819,10 +764,7 @@
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
-                "Fn::GetAtt": [
-                  "SwaggerJSONLambdaFunction",
-                  "Arn"
-                ]
+                "Fn::GetAtt": ["SwaggerJSONLambdaFunction", "Arn"]
               },
               "Action": "lambda:InvokeFunction",
               "Principal": "apigateway.amazonaws.com",
@@ -896,27 +838,16 @@
                   {
                     "Effect": "Allow",
                     "Principal": {
-                      "Service": [
-                        "lambda.amazonaws.com"
-                      ]
+                      "Service": ["lambda.amazonaws.com"]
                     },
-                    "Action": [
-                      "sts:AssumeRole"
-                    ]
+                    "Action": ["sts:AssumeRole"]
                   }
                 ]
               },
               "Policies": [
                 {
                   "PolicyName": {
-                    "Fn::Join": [
-                      "-",
-                      [
-                        "api",
-                        "dev",
-                        "lambda"
-                      ]
-                    ]
+                    "Fn::Join": ["-", ["api", "dev", "lambda"]]
                   },
                   "PolicyDocument": {
                     "Version": "2012-10-17",
@@ -936,9 +867,7 @@
                       },
                       {
                         "Effect": "Allow",
-                        "Action": [
-                          "dynamodb:PutItem"
-                        ],
+                        "Action": ["dynamodb:PutItem"],
                         "Resource": "*"
                       }
                     ]
@@ -972,27 +901,16 @@
                   {
                     "Effect": "Allow",
                     "Principal": {
-                      "Service": [
-                        "lambda.amazonaws.com"
-                      ]
+                      "Service": ["lambda.amazonaws.com"]
                     },
-                    "Action": [
-                      "sts:AssumeRole"
-                    ]
+                    "Action": ["sts:AssumeRole"]
                   }
                 ]
               },
               "Policies": [
                 {
                   "PolicyName": {
-                    "Fn::Join": [
-                      "-",
-                      [
-                        "api",
-                        "dev",
-                        "lambda"
-                      ]
-                    ]
+                    "Fn::Join": ["-", ["api", "dev", "lambda"]]
                   },
                   "PolicyDocument": {
                     "Version": "2012-10-17",
@@ -1012,9 +930,7 @@
                       },
                       {
                         "Effect": "Allow",
-                        "Action": [
-                          "dynamodb:Scan"
-                        ],
+                        "Action": ["dynamodb:Scan"],
                         "Resource": "*"
                       }
                     ]
@@ -1048,27 +964,16 @@
                   {
                     "Effect": "Allow",
                     "Principal": {
-                      "Service": [
-                        "lambda.amazonaws.com"
-                      ]
+                      "Service": ["lambda.amazonaws.com"]
                     },
-                    "Action": [
-                      "sts:AssumeRole"
-                    ]
+                    "Action": ["sts:AssumeRole"]
                   }
                 ]
               },
               "Policies": [
                 {
                   "PolicyName": {
-                    "Fn::Join": [
-                      "-",
-                      [
-                        "api",
-                        "dev",
-                        "lambda"
-                      ]
-                    ]
+                    "Fn::Join": ["-", ["api", "dev", "lambda"]]
                   },
                   "PolicyDocument": {
                     "Version": "2012-10-17",
@@ -1088,9 +993,7 @@
                       },
                       {
                         "Effect": "Allow",
-                        "Action": [
-                          "dynamodb:Query"
-                        ],
+                        "Action": ["dynamodb:Query"],
                         "Resource": "*"
                       }
                     ]
@@ -1124,27 +1027,16 @@
                   {
                     "Effect": "Allow",
                     "Principal": {
-                      "Service": [
-                        "lambda.amazonaws.com"
-                      ]
+                      "Service": ["lambda.amazonaws.com"]
                     },
-                    "Action": [
-                      "sts:AssumeRole"
-                    ]
+                    "Action": ["sts:AssumeRole"]
                   }
                 ]
               },
               "Policies": [
                 {
                   "PolicyName": {
-                    "Fn::Join": [
-                      "-",
-                      [
-                        "api",
-                        "dev",
-                        "lambda"
-                      ]
-                    ]
+                    "Fn::Join": ["-", ["api", "dev", "lambda"]]
                   },
                   "PolicyDocument": {
                     "Version": "2012-10-17",
@@ -1177,16 +1069,12 @@
                       },
                       {
                         "Effect": "Allow",
-                        "Action": [
-                          "dynamodb:PutItem"
-                        ],
+                        "Action": ["dynamodb:PutItem"],
                         "Resource": "*"
                       },
                       {
                         "Effect": "Allow",
-                        "Action": [
-                          "sns:Publish"
-                        ],
+                        "Action": ["sns:Publish"],
                         "Resource": {
                           "Ref": "createProductTopic"
                         }
@@ -1241,10 +1129,7 @@
               "FilterPolicy": {
                 "maxPrice": [
                   {
-                    "numeric": [
-                      ">",
-                      1000
-                    ]
+                    "numeric": [">", 1000]
                   }
                 ]
               }
@@ -1287,15 +1172,6 @@
               "Name": "sls-api-dev-ProductListLambdaFunctionQualifiedArn"
             }
           },
-          "ProductByIdLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "ProductByIdLambdaVersionEr9LipW3wNqpaT41JBIytuiW5yO0QfVFYnXIYhhAXE"
-            },
-            "Export": {
-              "Name": "sls-api-dev-ProductByIdLambdaFunctionQualifiedArn"
-            }
-          },
           "CatalogBatchProcessLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
@@ -1303,6 +1179,15 @@
             },
             "Export": {
               "Name": "sls-api-dev-CatalogBatchProcessLambdaFunctionQualifiedArn"
+            }
+          },
+          "ProductByIdLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "ProductByIdLambdaVersionEr9LipW3wNqpaT41JBIytuiW5yO0QfVFYnXIYhhAXE"
+            },
+            "Export": {
+              "Name": "sls-api-dev-ProductByIdLambdaFunctionQualifiedArn"
             }
           },
           "CreateProductLambdaFunctionQualifiedArn": {
@@ -1355,10 +1240,7 @@
           },
           "catalogItemsQueueArn": {
             "Value": {
-              "Fn::GetAtt": [
-                "catalogItemsQueue",
-                "Arn"
-              ]
+              "Fn::GetAtt": ["catalogItemsQueue", "Arn"]
             }
           }
         }
@@ -1456,11 +1338,7 @@
         "useStage": true
       },
       "webpack": {
-        "excludeFiles": [
-          "**/*.test.js",
-          "**/*d.ts",
-          "**/*.py"
-        ],
+        "excludeFiles": ["**/*.test.js", "**/*d.ts", "**/*.py"],
         "webpackConfig": "webpack.config.js",
         "includeModules": false,
         "packager": "npm"
@@ -1698,10 +1576,7 @@
             "FilterPolicy": {
               "maxPrice": [
                 {
-                  "numeric": [
-                    ">",
-                    1000
-                  ]
+                  "numeric": [">", 1000]
                 }
               ]
             }
@@ -1716,10 +1591,7 @@
         },
         "catalogItemsQueueArn": {
           "Value": {
-            "Fn::GetAtt": [
-              "catalogItemsQueue",
-              "Arn"
-            ]
+            "Fn::GetAtt": ["catalogItemsQueue", "Arn"]
           }
         }
       }
@@ -1740,7 +1612,7 @@
         "individually": true,
         "excludeDevDependencies": false,
         "artifactsS3KeyDirname": "serverless/api/dev/code-artifacts",
-        "artifactDirectoryName": "serverless/api/dev/1700567376603-2023-11-21T11:49:36.603Z"
+        "artifactDirectoryName": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z"
       },
       "functions": {
         "createProduct": {
@@ -1769,7 +1641,7 @@
   },
   "package": {
     "individually": true,
-    "artifactDirectoryName": "serverless/api/dev/1700567376603-2023-11-21T11:49:36.603Z",
+    "artifactDirectoryName": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z",
     "artifact": ""
   }
 }

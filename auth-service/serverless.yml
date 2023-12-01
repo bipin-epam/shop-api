@@ -1,0 +1,25 @@
+service: authorization-service
+frameworkVersion: "3"
+app: shop-api
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: ap-south-1
+  profile: epam_bipin
+
+functions:
+  basicAuthorizer:
+    handler: src/basicAuthorizer/index.handler
+
+# resources:
+# Outputs:
+#   basicAuthorizerArn:
+#     Value: !GetAtt basicAuthorizer.Arn
+#     Export:
+#       Name: basicAuthorizerArn
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
