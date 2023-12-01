@@ -228,7 +228,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/api/dev/1700898861009-2023-11-25T07:54:21.009Z/createProduct.zip"
+                "S3Key": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z/createProduct.zip"
               },
               "Handler": "src/handlers/create/index.handler",
               "Runtime": "nodejs18.x",
@@ -260,7 +260,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/api/dev/1700898861009-2023-11-25T07:54:21.009Z/productList.zip"
+                "S3Key": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z/productList.zip"
               },
               "Handler": "src/handlers/productList/index.handler",
               "Runtime": "nodejs18.x",
@@ -292,7 +292,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/api/dev/1700898861009-2023-11-25T07:54:21.009Z/productById.zip"
+                "S3Key": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z/productById.zip"
               },
               "Handler": "src/handlers/productById/index.handler",
               "Runtime": "nodejs18.x",
@@ -324,7 +324,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/api/dev/1700898861009-2023-11-25T07:54:21.009Z/catalogBatchProcess.zip"
+                "S3Key": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z/catalogBatchProcess.zip"
               },
               "Handler": "src/handlers/catalogBatchProcess/index.handler",
               "Runtime": "nodejs18.x",
@@ -359,7 +359,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/api/dev/1700898861009-2023-11-25T07:54:21.009Z/swaggerUI.zip"
+                "S3Key": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z/swaggerUI.zip"
               },
               "Handler": "swagger/swagger-html.handler",
               "Runtime": "nodejs18.x",
@@ -387,7 +387,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/api/dev/1700898861009-2023-11-25T07:54:21.009Z/swaggerJSON.zip"
+                "S3Key": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z/swaggerJSON.zip"
               },
               "Handler": "swagger/swagger-json.handler",
               "Runtime": "nodejs18.x",
@@ -428,14 +428,14 @@
               "CodeSha256": "B1FvvYGyoYFtBrUq/M5Y3jc5kIPvOsAT05l4iyU/U28="
             }
           },
-          "ProductByIdLambdaVersionEr9LipW3wNqpaT41JBIytuiW5yO0QfVFYnXIYhhAXE": {
+          "ProductListLambdaVersion605Na78I6mcLe0rVjUHr3vXvb5TpENBZpXgIEV49Q": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
-                "Ref": "ProductByIdLambdaFunction"
+                "Ref": "ProductListLambdaFunction"
               },
-              "CodeSha256": "t52aZYk3fxOM1IL3SCX7UnSN5jUW3mbILCd+lwCueMk="
+              "CodeSha256": "Pm1RTOqB7JcSfWsQObJz7d6r4H+eoqx0i3IMiVzQ69g="
             }
           },
           "CatalogBatchProcessLambdaVersionmq0U53AfRUsDzbclRGJ9eBkT0bvFbwddy8BF2eXnks": {
@@ -448,14 +448,14 @@
               "CodeSha256": "tIP/8TmDE5yBCr3MNybKcAe+AGoJ+VRS/u2R59JXxV4="
             }
           },
-          "ProductListLambdaVersion605Na78I6mcLe0rVjUHr3vXvb5TpENBZpXgIEV49Q": {
+          "ProductByIdLambdaVersionEr9LipW3wNqpaT41JBIytuiW5yO0QfVFYnXIYhhAXE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
-                "Ref": "ProductListLambdaFunction"
+                "Ref": "ProductByIdLambdaFunction"
               },
-              "CodeSha256": "Pm1RTOqB7JcSfWsQObJz7d6r4H+eoqx0i3IMiVzQ69g="
+              "CodeSha256": "t52aZYk3fxOM1IL3SCX7UnSN5jUW3mbILCd+lwCueMk="
             }
           },
           "CreateProductLambdaVersionNXNc7q7lxsm2rae5j4lpSC4Uwr5rTpAIQ5AYyNiPY": {
@@ -1278,13 +1278,13 @@
               "Name": "sls-api-dev-SwaggerJSONLambdaFunctionQualifiedArn"
             }
           },
-          "ProductByIdLambdaFunctionQualifiedArn": {
+          "ProductListLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ProductByIdLambdaVersionEr9LipW3wNqpaT41JBIytuiW5yO0QfVFYnXIYhhAXE"
+              "Ref": "ProductListLambdaVersion605Na78I6mcLe0rVjUHr3vXvb5TpENBZpXgIEV49Q"
             },
             "Export": {
-              "Name": "sls-api-dev-ProductByIdLambdaFunctionQualifiedArn"
+              "Name": "sls-api-dev-ProductListLambdaFunctionQualifiedArn"
             }
           },
           "CatalogBatchProcessLambdaFunctionQualifiedArn": {
@@ -1296,13 +1296,13 @@
               "Name": "sls-api-dev-CatalogBatchProcessLambdaFunctionQualifiedArn"
             }
           },
-          "ProductListLambdaFunctionQualifiedArn": {
+          "ProductByIdLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ProductListLambdaVersion605Na78I6mcLe0rVjUHr3vXvb5TpENBZpXgIEV49Q"
+              "Ref": "ProductByIdLambdaVersionEr9LipW3wNqpaT41JBIytuiW5yO0QfVFYnXIYhhAXE"
             },
             "Export": {
-              "Name": "sls-api-dev-ProductListLambdaFunctionQualifiedArn"
+              "Name": "sls-api-dev-ProductByIdLambdaFunctionQualifiedArn"
             }
           },
           "CreateProductLambdaFunctionQualifiedArn": {
@@ -1740,7 +1740,7 @@
         "individually": true,
         "excludeDevDependencies": false,
         "artifactsS3KeyDirname": "serverless/api/dev/code-artifacts",
-        "artifactDirectoryName": "serverless/api/dev/1700898861009-2023-11-25T07:54:21.009Z"
+        "artifactDirectoryName": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z"
       },
       "functions": {
         "createProduct": {
@@ -1769,7 +1769,7 @@
   },
   "package": {
     "individually": true,
-    "artifactDirectoryName": "serverless/api/dev/1700898861009-2023-11-25T07:54:21.009Z",
+    "artifactDirectoryName": "serverless/api/dev/1701404399551-2023-12-01T04:19:59.551Z",
     "artifact": ""
   }
 }

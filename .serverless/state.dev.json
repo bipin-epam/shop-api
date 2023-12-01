@@ -43,7 +43,7 @@
         "detectedFrameworkVersion": "3.38.0"
       },
       "outputs": {
-        "BasicAuthorizerLambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:authorization-service-dev-basicAuthorizer:11",
+        "BasicAuthorizerLambdaFunctionQualifiedArn": "arn:aws:lambda:ap-south-1:392849795078:function:authorization-service-dev-basicAuthorizer:12",
         "ServerlessDeploymentBucketName": "authorization-service-dev-serverlessdeploymentbuck-ofjh3ahwyyb1"
       }
     }
