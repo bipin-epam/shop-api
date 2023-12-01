@@ -1,6 +1,5 @@
 node_modules
-<<<<<<< HEAD
-=======
-*.env
->>>>>>> task-7
+jspm_packages
+
+# Serverless directories
 .serverless
